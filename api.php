@@ -14,7 +14,7 @@ $request->decodeHTTPRequest();
 $response = new APIResponse();
 $response->addHeader('Content-Type', 'application/json; charset=UTF-8');
 
-$db = new DB('localhost:3306', 'root', 'Nameless12!', 'progettos2i');
+$db = new DB('localhost:3306', 'root', '', 'progettos2i');
 
 $db->openConnection();
 if (!$db->isConnectionOpen()) {
