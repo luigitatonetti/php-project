@@ -17,49 +17,49 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `progettos2i`
+-- Database: `s2i`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `Ordini`
+-- Struttura della tabella `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `Ordini` (
+CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Data` date NOT NULL,
-  `PaeseDestinazione` varchar(50) NOT NULL,
+  `date` date NOT NULL,
+  `destination` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dump dei dati per la tabella `Ordini`
+-- Dump dei dati per la tabella `orders`
 --
 
-INSERT INTO `Ordini` (`id`, `Data`, `PaeseDestinazione`) VALUES
-(1, '2021-05-04', 'italia'),
-(2, '2021-01-04', 'italia'),
-(7, '2022-05-09', 'spagna'),
-(6, '2022-05-05', 'italia');
+INSERT INTO `orders` (`id`, `date`, `destination`) VALUES
+(1, '2021-05-04', 'italy'),
+(2, '2021-01-04', 'italy'),
+(7, '2022-05-09', 'spain'),
+(6, '2022-05-05', 'italy');
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `OrdiniRighe`
+-- Struttura della tabella `orders_rows`
 --
 
-CREATE TABLE IF NOT EXISTS `OrdiniRighe` (
-  `idOrdine` int(11) NOT NULL,
-  `idProdotto` int(11) NOT NULL,
-  `Quantita` int(11) NOT NULL
+CREATE TABLE IF NOT EXISTS `orders_rows` (
+  `id_order` int(11) NOT NULL,
+  `id_product` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dump dei dati per la tabella `OrdiniRighe`
+-- Dump dei dati per la tabella `orders_rows`
 --
 
-INSERT INTO `OrdiniRighe` (`idOrdine`, `idProdotto`, `Quantita`) VALUES
+INSERT INTO `orders_rows` (`id_order`, `id_product`, `quantity`) VALUES
 (1, 1, 5),
 (1, 4, 3),
 (2, 3, 10),
@@ -75,26 +75,26 @@ INSERT INTO `OrdiniRighe` (`idOrdine`, `idProdotto`, `Quantita`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `Prodotti`
+-- Struttura della tabella `products`
 --
 
-CREATE TABLE IF NOT EXISTS `Prodotti` (
+CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Nome` varchar(100) NOT NULL,
-  `CO2` float NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `co2` float NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dump dei dati per la tabella `Prodotti`
+-- Dump dei dati per la tabella `products`
 --
 
-INSERT INTO `Prodotti` (`id`, `Nome`, `CO2`) VALUES
-(1, 'Vitello Sintetico', 10.5),
-(2, 'Pollo Sintetico', 2.3),
-(3, 'Maiale Sintetico', 1.1),
-(4, 'Bistecca', 5.6),
-(5, 'Hamburgher', 2.1);
+INSERT INTO `products` (`id`, `name`, `co2`) VALUES
+(1, 'Beef', 10.5),
+(2, 'Chicken', 2.3),
+(3, 'Pork', 1.1),
+(4, 'Steak', 5.6),
+(5, 'Hamburger', 2.1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
