@@ -1,30 +1,108 @@
-# PHP FIRST PROJECT
+# PHP project
 
-## Descrizione
-Attraverso l'uso di un DB mysql, questa api mostra la quantità di co2 risparmiata per alcuni prodotti quando vengono effettutati degli ordini.
+## Description
 
+The goal of the project was to create a RESTful API that allows CRUD operations on the data of a database that manages the orders of a company that tracks the co2 footprint of its products
 
-## Uso
+### Entities:
 
+- products = id, name, co2
+- orders = id, date, destination
+- orders_rows = id_order, id_product, quantity
 
-- Prodotti
+### Instructions (products):
 
-    -  Elenco degli prodotti:            GET    .../prodotti
-    - Creazione Prodotto:               POST   .../prodotti         (payload nel body json)
-    - Modifica Prodotto:                PUT    .../prodotti/2       (payload nel body json)
-    - Cancellazione Prodotto:           DELETE .../prodotti/2
-    
+- **GET /products** = returns all products
+- **POST /products** = allows the entry of a product
+  ```json
+  {
+    "name": "Pork",
+    "co2": 1.1
+  }
+  ```
+- **PUT /products** = allows updating of a product
 
-- Ordini
+  ```json
+  {
+    "id": 4,
+    "name": "Pork",
+    "co2": 1.1
+  }
+  ```
 
-    - Elenco degli ordini:            GET    .../ordini
-    - Elenco degli ordini filtrato:   GET    .../ordini?range=2021-04-01,2022-05-10&paese=italia
-    - Dettaglio Ordine:               GET    .../ordini/2
-    - Creazione Ordine:               POST   .../ordini         (payload nel body json)
-    - Modifica Ordine:                PUT    .../ordini/2       (payload nel body json)
-    - Cancellazione Ordine:           DELETE .../ordini/2
+- **DELETE /products** = allows the cancellation of a product
+  ```json
+  {
+    "id": 5
+  }
+  ```
 
-- Totale co2 risparmiata
+### Instructions (orders):
 
-    - Totale co2 risparmiata:            GET    .../totCO2
-    - Totale co2 risparmiata filtrato:   GET    .../totCO2?range=2021-04-01,2022-05-10&paese=italia
+- **GET /orders** = returns all orders
+
+- **POST /orders** = allows placing an order
+  ```json
+  {
+    "date": "2022-05-05",
+    "destination": "italy",
+    "products": [
+        {
+            "id_product": 4,
+            "name": "Steak",
+            "quantity": 2,
+            "co2": 5.6
+        },
+        {
+            "id_product": 1,
+            "name": "Beef",
+            "quantity": 5,
+            "co2": 10.5
+        }
+     ]
+    }
+  ```
+- **PUT /orders** = allows updating of an order
+
+  ```json
+  {
+    "id": 3,
+    "date": "2022-05-05",
+    "destination": "italy",
+    "products": [
+        {
+            "id_product": 4,
+            "name": "Steak",
+            "quantity": 2,
+            "co2": 5.6
+        },
+        {
+            "id_product": 1,
+            "name": "Beef",
+            "quantity": 5,
+            "co2": 10.5
+        }
+     ]
+    }
+  ```
+
+- **DELETE /products** = allows the cancellation of an order
+
+  ```json
+  {
+    "id": 3
+  }
+  ```
+  
+  ### Instructions (totCO2):
+
+- **GET /totCO2** = return all saved CO2 (It can filter between two dates, by country and by product. All parameters are optional)
+
+  ```json
+  {
+    "startDate": "01/01/2000",
+    "endDate": "31/12/2000",
+    "dountry": "italy",
+    "id_product": 3
+  }
+  ```
