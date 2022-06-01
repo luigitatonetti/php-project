@@ -94,9 +94,9 @@ The goal of the project was to create a RESTful API that allows CRUD operations 
   }
   ```
   
-### Instructions (totCO2):
+### Instructions (co2):
 
-- **GET /totCO2** = return all saved CO2 (It can filter between two dates, by country and by product. All parameters are optional)
+- **GET /co2** = return all saved CO2 (It can filter between two dates, by country and by product. All parameters are optional)
 
   ```json
   {
