@@ -100,9 +100,9 @@ The goal of the project was to create a RESTful API that allows CRUD operations 
 
   ```json
   {
-    "startDate": "01/01/2000",
-    "endDate": "31/12/2000",
-    "dountry": "italy",
+    "startDate": "2021-01-01",
+    "endDate": "2021-12-31",
+    "country": "italy",
     "id_product": 3
   }
   ```
