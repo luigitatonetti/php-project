@@ -13,7 +13,7 @@ $request->decodeHttpRequest();
 $data = $request->getBody();
 
 $db = new db();
-$db->openConnection($dbconfig);
+$db->openConnection();
 
 $order = new Orders($db);
 

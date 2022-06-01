@@ -12,7 +12,7 @@ $request = new APIRequest;
 $request->decodeHttpRequest();
 
 $db = new db();
-$db->openConnection($dbconfig);
+$db->openConnection();
 
 $orders = new Orders($db);
 

@@ -1,6 +1,5 @@
 <?php
 
-$dbconfig = include_once 'config.php';
 $routes = include_once 'routes.php';
 
 include_once 'db.php';
