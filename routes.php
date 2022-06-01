@@ -2,20 +2,20 @@
 
 return $routes = [
     'GET' => [
-        'orders' => 'app/controllers/orders/read.php',
-        'products' => 'app/controllers/products/read.php',
-        'co2' => 'app/controllers/totCO2/read.php',
-    ],
-    'POST' => [
-        'orders' => 'app/controllers/orders/create.php',
-        'products' => 'app/controllers/products/create.php'
+        'orders' => 'OrdersController@read',
+        'products' => 'ProductsController@read',
+        'co2' => 'CO2Controller@read',
     ],
     'PUT' => [
-        'orders' => 'app/controllers/orders/update.php',
-        'products' => 'app/controllers/products/update.php'
+        'orders' => 'OrdersController@update',
+        'products' => 'ProductsController@update'
+    ],
+    'POST' => [
+        'orders' => 'OrdersController@create',
+        'products' => 'ProductsController@create'
     ],
     'DELETE' => [
-        'orders' => 'app/controllers/orders/delete.php',
-        'products' => 'app/controllers/products/delete.php'
+        'orders' => 'OrdersController@delete',
+        'products' => 'ProductsController@delete'
     ]
 ];

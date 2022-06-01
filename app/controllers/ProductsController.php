@@ -1,6 +1,6 @@
 <?php
 
-class OrdersController
+class ProductsController
 {
     public function read()
     {
@@ -18,22 +18,21 @@ class OrdersController
         $db = new db();
         $db->openConnection();
 
-        $orders = new Orders($db);
+        $products = new Products($db);
 
-        $recordset = $orders->selectAll();
+        $recordset = $products->selectAll();
 
         if ($recordset !== false) {
             http_response_code(201);
             echo json_encode($recordset);
         } else {
             http_response_code(404);
-            echo json_encode(array("message" => "No orders found"));
+            echo json_encode(array("message" => "No products found"));
         }
     }
 
     public function create()
     {
-
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: POST");
@@ -48,20 +47,18 @@ class OrdersController
 
         $db = new db();
         $db->openConnection();
-
-        $order = new Orders($db);
+        $product = new Products($db);
 
         if (
-            !empty($data['date']) &&
-            !empty($data['destination']) &&
-            !empty($data['products'])
+            !empty($data['name']) &&
+            !empty($data['co2'])
         ) {
-            if ($order->create($data)) {
+            if ($product->create($data)) {
                 http_response_code(201);
-                echo json_encode(array("message" => "Order added"));
+                echo json_encode(array("message" => "Product added"));
             } else {
                 http_response_code(503);
-                echo json_encode(array("message" => "Cannot add order"));
+                echo json_encode(array("message" => "Cannot add product"));
             }
         } else {
             http_response_code(400);
@@ -73,7 +70,7 @@ class OrdersController
     {
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Methods: POST");
+        header("Access-Control-Allow-Methods: PUT");
         header("Access-Control-Max-Age: 3600");
         header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
@@ -86,20 +83,19 @@ class OrdersController
         $db = new db();
         $db->openConnection();
 
-        $order = new Orders($db);
+        $product = new Products($db);
 
         if (
             !empty($data['id']) &&
-            !empty($data['date']) &&
-            !empty($data['destination']) &&
-            !empty($data['products'])
+            !empty($data['name']) &&
+            !empty($data['co2'])
         ) {
-            if ($order->update($data)) {
+            if ($product->update($data)) {
                 http_response_code(200);
-                echo json_encode(array("message" => "Order updated"));
+                echo json_encode(array("message" => "Product updated"));
             } else {
                 http_response_code(503);
-                echo json_encode(array("message" => "Cannot update order"));
+                echo json_encode(array("message" => "Cannot update product"));
             }
         } else {
             http_response_code(400);
@@ -109,6 +105,7 @@ class OrdersController
 
     public function delete()
     {
+
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
         header("Access-Control-Allow-Methods: DELETE");
@@ -124,15 +121,14 @@ class OrdersController
         $db = new db();
         $db->openConnection();
 
-        $order = new Orders($db);
-
+        $product = new Products($db);
         if (!empty($data['id'])) {
-            if ($order->delete($data)) {
+            if ($product->delete($data)) {
                 http_response_code(200);
-                echo json_encode(array("message" => "Order deleted"));
+                echo json_encode(array("message" => "Product deleted"));
             } else {
                 http_response_code(503);
-                echo json_encode(array("message" => "Cannot delete the order"));
+                echo json_encode(array("message" => "Cannot delete the product"));
             }
         } else {
             http_response_code(400);
